@@ -1,19 +1,14 @@
-const server = require('express');
-const conexion = require('./src/Connection/ConexionSQL');
+const express = require('express');
+const conexion = require('./src/database/ConexionSQL');
 const cors = require('cors');
+const {StockRouter} = require('./src/routes/StockproductRouter');
 
-
-const app = server();
+const app = express();
+app.use(express.json())
 app.use(cors());
-const port = 4000;
+app.use(StockRouter())
 
-//app.use()
-
-app.get('/', async (req, res)=>{
-    let dataresult = await conexion();
-    res.send(dataresult);
-});
-
-app.listen(port, ()=>{
-    console.log(`we are running application ${process.env.application_name}`);
+app.listen(process.env.portrunning, ()=>{
+    console.log(`we are running application ${process.env.application_name}
+    please inside to the localhost:8080/`);
 });

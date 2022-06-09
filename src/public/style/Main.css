@@ -26,7 +26,7 @@ body{
     display: flex;
     padding: 10px;
     align-items: center;
-    gap: 2em;
+    gap: 0.5em;
     flex-wrap: wrap;
 }
 .Menu_Img{
@@ -50,4 +50,22 @@ body{
 }
 .Menu_Titulo > span {
     color: rgb(12, 193, 238);
+}
+.tabledata{
+    width: 180vh;
+    height: 400px;
+    overflow: scroll;
+    padding: 20px;
+    margin: 20px 0 20px 0;
+}
+.TablaPrueba{
+    background-color: red;
+    width: 150px;
+    overflow: auto;
+    overflow-y: auto;
+}
+.Content_Buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
