@@ -1,10 +1,10 @@
 let ConectedDatabase = require('../database/ConexionSQL');
-let {SimpleQuery, InventoryStock} = require('../database/Query');
+let {SimpleQuery, InventoryQuery, inventori2, Seconduery} = require('../database/Query');
 
 async function getStock(req, res) {
     let poolresult = await ConectedDatabase();
-    let query = await poolresult.request().query(SimpleQuery);
-    console.log(query.recordset);
+    let query = await poolresult.request().query(InventoryQuery);
+    console.log(query)
     res.json(query);       
 }
 

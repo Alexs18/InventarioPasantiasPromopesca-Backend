@@ -1,6 +1,18 @@
 module.exports = {
-    SimpleQuery:"SELECT * from dbo.[PT.Temp.InventarioStock]",
-    InventoryStock:`SELECT        dbo.[PT.GuiaIngreso].num_guia, dbo.[PT.GuiaIngreso].fecha_guia, dbo.[PT.GuiaIngreso].fecchaRegIng, dbo.[PT.GuiaIngreso].obs_guia, dbo.[MatPri.GuiasEgreso].num_guia AS num_guiamp, 
+    SimpleQuery:`SELECT * from dbo.[Tmp_Kardex]`,
+    Seconduery:`SELECT        TOP (100) PERCENT dbo.[MatPri.GuiasIngreso].num_guia, dbo.[MatPri.Proveedores].codigo_proveedor, dbo.[MatPri.Proveedores].nombre_proveedor, dbo.[MatPri.OrdenesTrabajo].codigo_ordentrabajo, 
+    dbo.[MatPri.OrdenesTrabajo].viaje_ordentrabajo, dbo.[MatPri.OrdenesTrabajo].año_ordentrabajo, dbo.[MatPri.GuiasIngreso].fecha_guia, dbo.[MatPri.Productos].cod_producto, dbo.[MatPri.Productos].nombre_producto, 
+    SUM(dbo.[MatPri.DetGuiasIngreso].kg_bruto - dbo.[MatPri.DetGuiasIngreso].kg_tara) AS Kg_Net_Ingreso, dbo.[MatPri.DetGuiasIngreso].id_producto, dbo.[MatPri.DetGuiasIngreso].id_guia, 
+    dbo.[MatPri.DetGuiasIngreso].id_detalle, SUM(dbo.[MatPri.GuiasIngreso].id_ordentrabajo) AS total_orden_trabajo
+FROM            dbo.[MatPri.GuiasIngreso] INNER JOIN
+    dbo.[MatPri.OrdenesTrabajo] ON dbo.[MatPri.GuiasIngreso].id_ordentrabajo = dbo.[MatPri.OrdenesTrabajo].id_ordentrabajo INNER JOIN
+    dbo.[MatPri.Proveedores] ON dbo.[MatPri.Proveedores].id_proveedor = dbo.[MatPri.OrdenesTrabajo].id_proveedor INNER JOIN
+    dbo.[MatPri.DetGuiasIngreso] ON dbo.[MatPri.GuiasIngreso].id_guia = dbo.[MatPri.DetGuiasIngreso].id_guia INNER JOIN
+    dbo.[MatPri.Productos] ON dbo.[MatPri.DetGuiasIngreso].id_producto = dbo.[MatPri.Productos].id_producto
+GROUP BY dbo.[MatPri.GuiasIngreso].num_guia, dbo.[MatPri.Proveedores].codigo_proveedor, dbo.[MatPri.Proveedores].nombre_proveedor, dbo.[MatPri.OrdenesTrabajo].codigo_ordentrabajo, 
+    dbo.[MatPri.OrdenesTrabajo].viaje_ordentrabajo, dbo.[MatPri.OrdenesTrabajo].año_ordentrabajo, dbo.[MatPri.GuiasIngreso].fecha_guia, dbo.[MatPri.Productos].cod_producto, dbo.[MatPri.Productos].nombre_producto, 
+    dbo.[MatPri.DetGuiasIngreso].id_producto, dbo.[MatPri.DetGuiasIngreso].id_guia, dbo.[MatPri.DetGuiasIngreso].id_detalle`,
+    InventoryQuery:`SELECT        dbo.[PT.GuiaIngreso].num_guia, dbo.[PT.GuiaIngreso].fecha_guia, dbo.[PT.GuiaIngreso].fecchaRegIng, dbo.[PT.GuiaIngreso].obs_guia, dbo.[MatPri.GuiasEgreso].num_guia AS num_guiamp, 
     dbo.[MatPri.GuiasEgreso].fecha_guia AS fecha_guiamp, dbo.[MatPri.GuiasEgreso].dia_produccion, dbo.[MatPri.GuiasEgreso].anio_produccion, dbo.[PT.DetGuiaIngreso].idot, dbo.[MatPri.OrdenesTrabajo].codigo_ordentrabajo, 
     dbo.[MatPri.OrdenesTrabajo].id_proveedor, dbo.[MatPri.OrdenesTrabajo].viaje_ordentrabajo, dbo.[MatPri.OrdenesTrabajo].año_ordentrabajo, dbo.[MatPri.Proveedores].codigo_proveedor, 
     dbo.[MatPri.Proveedores].nombre_proveedor, dbo.[PT.DetGuiaIngreso].id_tipo_miga, dbo.[PT.Tipo.Migas].nombre_tipo_miga, dbo.[PT.Tipo.Migas].tipo, dbo.[PT.DetGuiaIngreso].idcliente, dbo.[PT.Op].FechaInicio_op, 
@@ -38,8 +50,7 @@ module.exports = {
           FROM            (SELECT        [PT.Items_Liq_Cobertura].Abreviatura, [PT.Items_PT].id_items
                                     FROM            [PT.Items_PT] WITH (nolock) INNER JOIN
                                                               [PT.Items_Liq_Cobertura] WITH (nolock) ON [PT.Items_PT].Id_Items_Liq_Cobertura = [PT.Items_Liq_Cobertura].Id_Items_Liq_Cobertura) AS LiquidoCobertura
-          WHERE        LiquidoCobertura.Id_Items = [PT.Items_PT].id_items)) END) AS Numero_Lote, (CASE WHEN dbo.[MatPri.GuiasEgreso].fecha_produccion BETWEEN (CONVERT(date, 
-    '01-01-' + CAST(anio_produccion AS VARCHAR(10)))) AND CONVERT(date, '31-05-' + CAST(anio_produccion AS VARCHAR(10))) THEN (DATEADD(YY, 4, dbo.[MatPri.GuiasEgreso].fecha_produccion)) ELSE (DATEADD(YY, 5, 
+          WHERE        LiquidoCobertura.Id_Items = [PT.Items_PT].id_items)) END) AS Numero_Lote, (CASE WHEN dbo.[MatPri.GuiasEgreso].fecha_produccion BETWEEN CAST(anio_produccion AS VARCHAR(10)) AND CAST(anio_produccion AS VARCHAR(10)) THEN (DATEADD(YY, 4, dbo.[MatPri.GuiasEgreso].fecha_produccion)) ELSE (DATEADD(YY, 5, 
     dbo.[MatPri.GuiasEgreso].fecha_produccion)) END) AS Fecha_Expiracion_Lata, dbo.[MatPri.OrdenesTrabajo].areafao_ordentrabajo, dbo.[PT.DetGuiaIngreso].nombre_marca AS nombre_marca_ingreso, 
     dbo.[PT.DetGuiaIngreso].fecha_expiracion, dbo.[PT.Items_Tipos].Id_Items_Tipos, dbo.[MatPri.Proveedores].origen_proveedor, ISNULL(dbo.[PT.Op.Detalle].can_code, 'N/A') AS can_code, 
     ISNULL(dbo.[PT.DetGuiaIngreso].curentena, 0) AS curentena, dbo.[PT.Items_Tipo_Envase].dia_cuarentena, dbo.[MatPri.GuiasEgreso].lote_produccion, dbo.[PT.Items_PT].CodigoErp, 
