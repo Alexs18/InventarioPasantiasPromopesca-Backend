@@ -52,17 +52,11 @@ body{
     color: rgb(12, 193, 238);
 }
 .tabledata{
-    width: 180vh;
+    width: 215vh;
     height: 400px;
     overflow: scroll;
     padding: 20px;
-    margin: 20px 0 20px 0;
-}
-.TablaPrueba{
-    background-color: red;
-    width: 150px;
-    overflow: auto;
-    overflow-y: auto;
+    margin: 20px 0 20px 20px;
 }
 .Content_Buttons{
     display: flex;

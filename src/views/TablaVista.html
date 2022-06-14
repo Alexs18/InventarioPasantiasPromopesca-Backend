@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Tables with sql server</title>
+    <link rel="stylesheet" href="../style/Main.css">
+</head>
+<body>
+    <div class="Menu_Main">
+        <div class="Menu_Title_Main">
+            <img class="Menu_Img" src="../img/LogoPromopesca.png" alt="">
+            <p class="Menu_Titulo">Promo<span>Pesca S.A</span></p>
+        </div>
+        <p>Bienvenido...</p>
+    </div>
+    <div class="Content">
+        <div class="Content_Table">
+            <div class="Content_Table_Header">
+                <h3>Control de Stock</h3>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Busqueda..." aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                  </form>
+            </div>
+            <div class="tabledata">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Num_guia</th>
+                        <th scope="col">Fecha_guia</th>
+                        <th scope="col">Fecha_Registro_Ingreso</th>
+                        <th scope="col">Observaciones_Guia</th>
+                        <th scope="col">Num_guiaamp</th>
+                        <th scope="col">Fecha_guiamp</th>
+                        <th scope="col">Dia_Produccion</th>
+                        <th scope="col">Año_Produccion</th>
+                        <th scope="col">Id_Orden_Trabajo</th>
+                        <th scope="col">Codigo_Orden_Trabajo</th>
+                        <th scope="col">Id_proveedor</th>
+                        <th scope="col">Viaje_Orden_Trabajo</th>
+                        <th scope="col">Año_Orden_Trabajo</th>
+                        <th scope="col">Codigo_Proveedor</th>
+                        <th scope="col">Nombre_Proveedor</th>
+                        <th scope="col">Id_Tipo_Miga</th>
+                        <th scope="col">Nombre_Tipo_Miga</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Id_Cliente</th>
+                        <th scope="col">Fecha_Inici_Op</th>
+                        <th scope="col">Id_Cliente</th>
+                        <th scope="col">FechaFin_Op</th>
+                        <th scope="col">Nombre_Op</th>
+                        <th scope="col">Id_Pais</th>
+                        <th scope="col">FContrato_Op</th>
+                        <th scope="col">Id_OP_Estado</th>
+                        <th scope="col">FNombre_Cliente</th>
+                        <th scope="col">Direccion_Cliente</th>
+                        <th scope="col">Telefono_Cliente</th>
+                        <th scope="col">Tipo_Cliente</th>
+                        <th scope="col">Ciudad</th>
+                        <th scope="col">IdOP</th>
+                        <th scope="col">tIPO_Despacho</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">TipoRTP</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">EstadoRTP</th>
+                        <th scope="col">IdRtp</th>
+                        <th scope="col">Id_Tipo_Congelamiento</th>
+                        <th scope="col">Unidades</th>
+                        <th scope="col">Cajas</th>
+
+                      </tr>
+                    </thead>
+                    <tbody id="Body_Structure">
+                     
+                    </tbody>
+                </table>
+            </div>
+            <div class="Content_Buttons">
+                <button class="btn btn-success">Descargar en excel</button>
+            </div>
+        </div>         
+    </div>
+      
+</body>
+    <script>
+        let table = document.getElementById("Body_Structure");
+        let APIURL = 'http://localhost:8080/StockProducto';
+        let CONFIGAPI = {
+            method:'Get',
+            headers:{
+                "Access-Control-Allow-Origin":"*"
+             }
+        }
+        async function PeticionGet(API, Config) {
+
+            try {
+                console.log("Aqi estamos")
+                let datapure = await fetch(API, Config);
+                console.log("Peticion correcta")
+                datapure.json().then(d=>{console.log(d)})
+            
+                //ESTOY PROBANDO ALGO DESDE MI PC
+
+            } catch (error) {
+                console.log("we are a mistake")
+            }
+            
+        }
+       PeticionGet(APIURL, CONFIGAPI)
+    </script>
+    <style>
+        .TableSQL{
+            background-color: red;
+            width: 100vh;
+            height: 100vh;
+        }
+        .Prueba{
+            overflow: auto;
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+</html>

@@ -15,6 +15,11 @@ module.exports =
     max:process.env.max,
     min:process.env.min,
     trustServerCertificate:process.env.trustServerCertificate,
+    pool:{
+        max: 10,
+        min: 0,
+        idleTimeoutMillis: 10000
+    },
     options: {
         encrypt: false,
         trustServerCertificate: true,
