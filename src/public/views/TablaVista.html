@@ -1,0 +1,121 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Tables with sql server</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../style/Main.css">
+    <link rel="stylesheet" href="../style/Table.css">
+    <link rel="stylesheet" href="../style/Headers.css">
+    <link rel="stylesheet" href="../style/loading.css">
+    <link rel="stylesheet" href="../style/Botones.css">
+</head>
+<body>
+    
+    
+    <div class="centro" id="animacion">
+        <img class="Menu_Img" src="../img/LogoPromopesca.png" alt="">
+        <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <p>Cargando......</p>
+    </div>
+    <div class="Menu_Main">
+        <div class="Menu_Title_Main">
+            <img class="Menu_Img" src="../img/LogoPromopesca.png" alt="">
+            <p class="Menu_Titulo">Promo<span>Pesca S.A</span></p>
+        </div>
+        <p > <strong>BIENVENIDO AL STOCK DE PRODUCTOS</strong> <br>
+    </div>
+    <div class="Content" id="MainContent">
+       
+        <div id="CabeceraStock" class="CabeceraStock">
+            <div class="Search">
+                <h5 class="Title_Header">BUSCAR STOCK POR:</h5>
+            <div class="Content_Header">
+                <div class="ContentStock">
+                    <button id="BtnSearch" class="btn btn-primary">Buscar Grupo</button>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoCongelado" id="GrupoCongelado">
+                        <label class="form-check-label" for="inlineCheckbox2">CONGELADO</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoConserva" id="GrupoConserva">
+                        <label class="form-check-label" for="inlineCheckbox2">CONSERVA</label>
+                    </div>
+                </div>
+                <div class="ContentStock">
+                    <button id="BtnSearchEnvase" class="btn btn-primary">Buscar Tipo Envase</button>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoConserva" id="GrupoPalagicos">
+                        <label class="form-check-label" for="inlineCheckbox2">Palagicos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoCongelado" id="GrupoAtun">
+                        <label class="form-check-label" for="inlineCheckbox2">Atun</label>
+                    </div>
+                </div>
+                <div class="ContentStock">
+                    <button id="BtnSearchFormato" class="btn btn-primary">Buscar Formato</button>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoConserva" id="GrupoFormato">
+                        <label class="form-check-label" for="inlineCheckbox2">Formato</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="GrupoCongelado" id="GrupoCobertura">
+                        <label class="form-check-label" for="inlineCheckbox2">Liquido de cobertura</label>
+                    </div>
+                </div>
+            </div>    
+            </div>
+            
+            <div class="Content_Total">
+                <h3>Total Cajas:  <span id="TotalCajasMain"></span></h3>
+                <h3>Total Unidades: <span id="TotalUnidadesMain"></span> </h3>
+            </div>
+        </div>
+        
+        <div class="TableContent">
+            
+            <div class="centro centro2" id="animacion2">
+                <div class="lds-spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <p>Cargando......</p>
+            </div>
+
+            <div id="Filtros" class="Contenidos3">
+                
+            </div>
+        </div>
+    </div>
+  
+</body>
+    <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
+    <script src="../js/Filtros.js"></script>
+    <script src="../js/Peticiones.js"></script>
+    <script src="../js/SelectProduct.js"></script>
+</html>

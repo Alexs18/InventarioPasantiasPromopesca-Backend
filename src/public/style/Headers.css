@@ -1,0 +1,67 @@
+.CabeceraStock{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.Search{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.Content_Header{
+    width: 130%;
+}
+.Content_Total{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 40%;
+}
+.Header_Product{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+    padding: 0 0 0 20px;
+    margin-top: 20px;
+}
+
+.Contenidos3{
+            background-color: rgb(224, 219, 219);
+            width: 200vh;
+            overflow: hidden;
+            overflow-y: scroll;
+            overflow: auto;
+            padding: 50px;
+            margin-bottom: 200px;
+            height: 100vh;
+        }
+        .Contenidos3_Tabla{
+            width: 185vh;
+            max-height: 300px;
+            overflow: hidden;
+            overflow-x: scroll;
+            overflow: auto;
+            scrollbar-width: 100px;
+            padding: 0 20px 20px 20px;
+            margin-bottom: 40px;
+        }
+        .Contenidos3_Tabla1{
+            max-height: 450px;
+            margin-bottom: 50px;
+            width: 185vh;
+        }
+        thead tr th { 
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #ffffff;
+        }
+    
+        .table-responsive { 
+            height:200px;
+            overflow:scroll;
+        }

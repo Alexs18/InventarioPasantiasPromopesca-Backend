@@ -1,0 +1,35 @@
+.parrafo{
+    background-color: red;
+    color: yellow;
+    width: 100%; padding: 5px;
+    text-align: center;
+    background-color: aliceblue;
+    border: 1px solid black;
+    color: black;
+    padding: 10px;
+    font-size: 12px;
+    width: auto;
+    height: auto;
+    background-color: purple;
+    max-width: 20px;
+    margin-bottom: 50px;
+
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    width: 100%;
+    margin-top: -20px;
+    
+}
+footer{
+
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid black;
+}

@@ -5,7 +5,7 @@ const config = require('../config/index.js');
 
 async function ConecctionDatabase() {
     const result = await conexionsql.connect(config);
-    console.log("Database connection was success")
+    //console.log("Database connection was success")
     return result;
 }
 

@@ -26,3 +26,6 @@ module.exports =
     }
 
 }
+/**Algunos de estos archivos de configuración son necesarios para la conexion con la base
+ * de datos, y otros son necesarios para el nombre de la aplicacioón, el usuario al que nos conectaremos, etc
+ */
